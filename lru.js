@@ -44,6 +44,11 @@ class User {
                     break;;
                 }
             }
+            else{
+                console.log("nothing data");
+                i--;
+                break;
+            }
         }
     }
 }
@@ -52,11 +57,6 @@ class User {
 (async function main() {
     // メインループ
     while(1){
-        // 要素の確認
-        console.log(data[i-2]);
-        console.log(data[i-1]);
-        console.log(data[i]);
-
         disc = await readUserInput('put or get or q: ');
 
         // q入力時
@@ -73,6 +73,10 @@ class User {
         else if(disc == "get"){
             data[i] = new User(await readUserInput('data name: '), null);
             data[i].get();
+        }
+        else{
+            console.log("command not found");
+            continue;
         }
     i++;
     }
