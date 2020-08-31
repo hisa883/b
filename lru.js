@@ -1,4 +1,3 @@
-const sum = require('./func');
 const readUserInput = require('./func');
 const MAX = 2; // キャッシュの最大サイズ
 const N = 128; // 入力の最大回数
@@ -34,14 +33,16 @@ class User {
             if(data[j] != undefined){
                 if(data[i].name == data[j].name){
                     console.log(data[j].name + ": " + data[j].main);
-            
+                    data[i] = new User(data[j].name, data[j].main);
+
+                    // 配列の中をソートする
+                    if(data[i].name == data[i - 1].name && i > 1){       
+                        sort = data[i - 1];
+                        data[i - 1] = data[i - 2]; 
+                        data[i - 2] = sort;
+                    }
                     break;;
                 }
-            }
-            else{
-                console.log("nothing data");
-                i--;
-                break;
             }
         }
     }
@@ -73,6 +74,6 @@ class User {
             data[i] = new User(await readUserInput('data name: '), null);
             data[i].get();
         }
-        i++;
+    i++;
     }
 })();
