@@ -15,11 +15,34 @@ class User {
     name() {
         return this.name;
     }
-
+    main() {
+        return this.main;
+    }
     put() {
         // 最も古いデータを消す
         if(i >= MAX){
-            console.log(data[i-MAX].name + " => null");
+            if(data[i].name != data[i-1].name && data[i].name != data[i-2].name){
+                if(data[i-1].name != data[i-2].name){
+                    console.log(data[i-MAX].name + " => null");
+                }       
+            }
+        }
+    }
+    get() {
+        // 入力データ名がメモリにあるか判断
+        for(var j = i-1; j > i-MAX-1; j--){
+            if(data[j] != undefined){
+                if(data[i].name == data[j].name){
+                    console.log(data[j].name + ": " + data[j].main);
+            
+                    break;;
+                }
+            }
+            else{
+                console.log("nothing data");
+                i--;
+                break;
+            }
         }
     }
 }
@@ -43,6 +66,12 @@ class User {
         else if(disc == "put"){
             data[i] = new User(await readUserInput('data name: '), await readUserInput('data main: '));
             data[i].put();
+        }
+
+        // get入力時の処理
+        else if(disc == "get"){
+            data[i] = new User(await readUserInput('data name: '), null);
+            data[i].get();
         }
         i++;
     }
