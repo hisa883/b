@@ -4,13 +4,13 @@ const N = 128; // 入力の最大回数
 var disc; // putとgetとq(終了)の判別
 var i = 0;
 var data = [N]; // データ
+var sort; // データのソート用
 
 class User {
     constructor( name, main) {
         this.name = name;
         this.main = main;
     }
-
     name() {
         return this.name;
     }
@@ -53,7 +53,6 @@ class User {
     }
 }
 
-
 (async function main() {
     // メインループ
     while(1){
@@ -68,7 +67,6 @@ class User {
             data[i] = new User(await readUserInput('data name: '), await readUserInput('data main: '));
             data[i].put();
         }
-
         // get入力時の処理
         else if(disc == "get"){
             data[i] = new User(await readUserInput('data name: '), null);
